@@ -9,7 +9,7 @@ Dự án tổng hợp **SQL Business Analytics** gồm 2 domain thực tế, s�
 ```
 sql-analytics-portfolio/
 ├── README.md
-├── Portfolio_Master_TSQL.sql      ← Tất cả query — 2 module, annotated
+├── MCI_project.sql      ← Tất cả query — 2 module, annotated
 ├── data/
 │   ├── AdventureWorks_Sales_2015.csv   (2,630 rows)
 │   ├── AdventureWorks_Sales_2016.csv   (23,935 rows)
@@ -116,9 +116,8 @@ Phân tích doanh thu đa năm, phân tích theo chiều sản phẩm × khách 
 Dùng SSMS → Right-click database → Tasks → Import Flat File → chọn từng file CSV trong thư mục `data/`.
 
 ### Chạy Query
-1. Mở `Portfolio_Master_TSQL.sql` trong SSMS
+1. Mở `MCI_project.sql` trong SSMS
 2. Chạy từng Module — mỗi Module bắt đầu bằng `USE <database>`
-3. Kết nối Power BI → xem `PowerBI_Guide.md`
 
 ---
 
