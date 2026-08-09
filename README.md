@@ -145,7 +145,7 @@ Dùng SSMS → Right-click database → Tasks → Import Flat File → chọn t�
 
 **[NGUYEN HUNG THANH]** — Business Data Analyst
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat&logo=linkedin)](https://linkedin.com/in/YOUR_PROFILE)
+[![LinkedIn]([https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=flat&logo=linkedin)](https://linkedin.com/in/YOUR_PROFILE](https://www.linkedin.com/in/thant2706/))
 
 📧 hungthsnhnguyen37@gmail.com
 
