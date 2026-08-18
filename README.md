@@ -143,7 +143,7 @@ Dùng SSMS → Right-click database → Tasks → Import Flat File → chọn t�
 
 ## 👤 Tác giả
 
-**[NGUYEN HUNG THANH]** — Business Data Analyst
+**[NGUYEN HUNG THANH]** — Data Analyst
 
 [LinkedIn](https://www.linkedin.com/in/thant2706/)
 
