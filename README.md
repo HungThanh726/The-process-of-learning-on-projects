@@ -1,25 +1,24 @@
-# 📊 SQL Business Analytics Portfolio
+# 📊 Retail & AdventureWorks Sales Analytics
 
-Dự án tổng hợp **SQL Business Analytics** gồm 2 domain thực tế, sử dụng T-SQL trên SQL Server. Module 2 có **real CSV dataset** kèm theo. Lộ trình kỹ năng từ SELECT cơ bản → JOIN đa bảng → Window Function → Nested Subquery.
+Phân tích bán lẻ 2 domain: **Superstore Canada** (Orders) và **AdventureWorks** (Sales 2015–2023). Tổng hợp từ BTVN1→BTVN6 và 8 file CSV thực tế.
 
 ---
 
 ## 🗂️ Cấu trúc Repository
 
 ```
-sql-analytics-portfolio/
+retail-aw-analytics/
 ├── README.md
-├── MCI_project.sql      ← Tất cả query — 2 module, annotated
-├── data/
-│   ├── AdventureWorks_Sales_2015.csv   (2,630 rows)
-│   ├── AdventureWorks_Sales_2016.csv   (23,935 rows)
-│   ├── AdventureWorks_Sales_2017.csv   (29,481 rows)
-│   ├── AdventureWorks_Sales_2018.csv   (29,481 rows)
-│   ├── AdventureWorks_Sales_2023.csv   (29,541 rows)
-│   ├── AdventureWorks_Customers.csv    (18,148 rows)
-│   ├── AdventureWorks_Returns.csv      (1,809 rows)
-│   ├── AdventureWorks_Territories.csv  (10 rows)
-
+├── Portfolio_Master_TSQL.sql     
+└── data/
+    ├── AdventureWorks_Sales_2015.csv      (2,630 rows)
+    ├── AdventureWorks_Sales_2016.csv     (23,935 rows)
+    ├── AdventureWorks_Sales_2017.csv     (29,481 rows)
+    ├── AdventureWorks_Sales_2018.csv     (29,481 rows)
+    ├── AdventureWorks_Sales_2023.csv     (29,541 rows)
+    ├── AdventureWorks_Customers.csv      (18,148 rows)
+    ├── AdventureWorks_Returns.csv         (1,809 rows)
+    └── AdventureWorks_Territories.csv        (10 rows)
 ```
 
 ---
@@ -28,27 +27,23 @@ sql-analytics-portfolio/
 
 | Layer | Công cụ |
 |-------|---------|
-| Database Engine | SQL Server 2019+ (T-SQL) |
-| Query IDE | SSMS (SQL Server Management Studio) |
-| BI / Visualization | Power BI Desktop |
+| Database | SQL Server (T-SQL) |
+| Visualization | Power BI Desktop |
 | Version Control | Git / GitHub |
 
 ---
 
 ## 📦 Module 1 — Retail Orders Analysis
 
-**Database:** `hocsql` | **Table:** `Orders`
+**Database:** `hocsql` | **Table:** `Orders` | 
 
-Phân tích đơn hàng bán lẻ Canada theo vùng địa lý, phân khúc khách hàng, và phương thức vận chuyển. Trọng tâm là tính toán chỉ số lợi nhuận và lọc dữ liệu nhiều điều kiện.
-
-| # | Business Question | Kỹ thuật |
-|---|-------------------|----------|
+| BQ | Câu hỏi | Kỹ thuật |
+|----|---------|----------|
 | BQ1 | Chọn cột báo cáo cơ bản | `SELECT` |
 | BQ2 | Total Cost / Revenue / Net Profit theo Region | Derived columns |
-| BQ3–BQ7 | Filter theo Region / Priority / Province / Shipmode / Subcategory | `WHERE IN / NOT IN / LIKE / AND` |
+| BQ3–9 | Filter theo Region / Priority / Province / Shipmode / Subcategory / Segment | `WHERE IN / NOT IN / LIKE / AND` |
 
-**Công thức:**
-```sql
+```
 Total Cost    = product_base_margin × unit_price + shipping_cost
 Total Revenue = order_quantity × unit_price × (1 − discount)
 Net Profit    = Total Revenue − Total Cost
@@ -58,95 +53,79 @@ Net Profit    = Total Revenue − Total Cost
 
 ## 📦 Module 2 — AdventureWorks Sales Analytics
 
-**Database:** `LEARNSQL` | **Dataset:** Sales 2015–2023 · 115K+ rows
+**Database:** `LEARNSQL` |
 
-Phân tích doanh thu đa năm, phân tích theo chiều sản phẩm × khách hàng × khu vực. Bổ sung phân tích Returns và Customer demographics từ file CSV thực tế.
+### Dataset
 
-### Dữ liệu
+| File | Rows | Unique Customers |
+|------|------|-----------------|
+| Sales 2015 | 2,630 | 2,630 |
+| Sales 2016 | 23,935 | 9,133 |
+| Sales 2017 | 29,481 | 10,502 |
+| Sales 2018 | 29,481 | 14,186 |
+| Sales 2023 | 29,541 | 14,203 |
+| **ALLSALES** | **115,068** | — |
+| Customers | 18,148 | 9 chiều demographics |
+| Returns | 1,809 | 2015–2017 only |
+| Territories | 10 | 3 Continent, 10 Region |
 
-| File | Rows | Mô tả |
-|------|------|-------|
-| Sales 2015–2023 | 115,068 tổng | Fact table giao dịch bán hàng |
-| Customers | 18,148 | Income, Education, Occupation, Gender |
-| Returns | 1,809 | Giao dịch hoàn trả theo Territory × Product |
-| Territories | 10 | Region, Country, Continent |
+### 11 Business Questions
 
-### Business Questions
-
-| # | Câu hỏi | Kỹ thuật |
-|---|---------|----------|
-| BQ1 | Doanh thu theo tháng | `CREATE VIEW` + `FORMAT()` |
-| BQ2 | Số lượng bán theo Màu × Giới tính KH | JOIN 3 bảng |
-| BQ3 | Doanh thu tháng theo Category × Color | JOIN 4 bảng |
-| BQ4 | Doanh thu năm theo Category (VIEW) | `CREATE VIEW` |
-| BQ5 | Doanh thu theo Màu × Size × Category × Demographics | JOIN 5 bảng |
-| BQ6 | Doanh thu theo Khu vực × Kích cỡ sản phẩm | JOIN Territories |
-| BQ7 | Khách hàng có doanh thu > trung bình năm | Nested Subquery (2 lớp) |
-| BQ8 | Tỷ lệ hoàn trả theo Product × Territory | Returns analysis + `NULLIF` |
-| BQ9 | Phân tích KH theo Thu nhập × Học vấn | Customer demographics |
+| BQ | Câu hỏi | Kỹ thuật | 
+|----|---------|----------|
+| BQ1 | Doanh thu theo tháng (VIEW) | `CREATE VIEW` + `FORMAT()` | 
+| BQ2 | Số lượng bán theo Màu × Giới tính | JOIN 3 bảng | 
+| BQ3 | Doanh thu tháng × Category × Color | JOIN 4 bảng |
+| BQ4 | Doanh thu Năm × Category (VIEW) | `CREATE VIEW` | 
+| BQ5 | Revenue × Màu × Size × Category × Demographics | JOIN 5 bảng |
+| BQ6 | Revenue × Territory × Size | JOIN Territories | 
+| BQ7 | Khách hàng vượt doanh thu trung bình năm | Nested Subquery 2 lớp | 
+| BQ8 | Tăng trưởng YoY | `LAG()` Window Function | 
+| BQ9 | Return Rate theo Territory × năm | Subquery LEFT JOIN + `NULLIF()` | 
+| BQ10 | Phân khúc KH Champion/Loyal/Promising | `CTE` + `CASE WHEN` | 
+| BQ11 | Sales vs Returns theo Territory | Multi-CTE + `FULL OUTER JOIN` | 
 
 ---
 
-## 🔑 Ma trận kỹ thuật SQL
+## 🔑 Kỹ thuật SQL
 
-| Kỹ thuật | Mod 1 | Mod 2 | 
+| Kỹ thuật | Mod 1 | Mod 2 |
 |----------|:-----:|:-----:|
 | SELECT + WHERE (IN / NOT IN / LIKE / AND) | ✅ | |
-| Derived columns (phép tính) | ✅ | ✅ |
-| UNION ALL (gộp nhiều bảng) | | ✅ |
-| Multi-table JOIN (3–5 bảng) | | ✅ | 
-| CREATE VIEW | | ✅ | 
-| FORMAT() / YEAR() phân nhóm thời gian | | ✅ |
-| Excel serial date conversion | | | 
-| Nested Subquery | | ✅ | 
-| ROW_NUMBER() OVER (PARTITION BY) | | | 
-| CTE — WITH ... AS | | | 
-| Multi-CTE + FULL OUTER JOIN | | | 
-| Returns / NULLIF analysis | | ✅ |
+| Derived columns | ✅ | ✅ |
+| UNION ALL (gộp 5 bảng) | | ✅ |
+| Multi-table JOIN (3–5 bảng) | | ✅ |
+| CREATE VIEW | | ✅ |
+| FORMAT() / YEAR() | | ✅ |
+| Nested Subquery (2 lớp) | | ✅ |
+| LAG() Window Function | | ✅ |
+| CTE — WITH ... AS | | ✅ |
+| CASE WHEN phân nhóm | | ✅ |
+| Multi-CTE + FULL OUTER JOIN | | ✅ |
+| NULLIF() / COALESCE() / ISNULL() | | ✅ |
 
+---
+
+## 📈 Key Findings
+
+- **2015→2016:** Đơn hàng tăng **+810%** (2,630→23,935)
+- **2016→2018:** Khách hàng từ 9,133 → 14,186 (+55%)
+- **Australia** dẫn đầu Pacific; **Southwest** mạnh nhất US
+- **Returns:** 86 (2015) → 972 (2017) — tăng theo growth
 ---
 
 ## 🚀 Cách chạy
 
-- SSMS (SQL Server Management Studio)
-
-### Import CSV vào SQL Server
-
-**Module 2 — AdventureWorks:**
-Dùng SSMS → Right-click database → Tasks → Import Flat File → chọn từng file CSV trong thư mục `data/`.
-
-### Chạy Query
-1. Mở `MCI_project.sql` trong SSMS
-2. Chạy từng Module — mỗi Module bắt đầu bằng `USE <database>`
-
----
-
-## 📈 Insight (tổng quan)
-
-- **Module 1**: West và Ontario dẫn đầu Net Profit sau khi trừ shipping cost và discount
-- **Module 2**: 2015→2016 tăng trưởng +1,278% order qty; Australia và Southwest là top 2 territory
-- **Module 2 Returns**: Return rate tăng song hành với growth — cần dashboard monitoring theo tháng
-
-
-## 📈 Key Findings (từ dữ liệu thực tế)
-
-> Các insight bên dưới tính trực tiếp từ CSV dataset — có thể dùng làm bullet point trong CV hoặc khi trình bày portfolio.
-
-**AdventureWorks Sales (2015–2017, 84,174 orders):**
-- 🔺 Tăng trưởng đột biến: 2015→2016 tăng **+1,278% order quantity** (2,630 → 36,230 đơn) — phản ánh mở rộng thị trường quy mô lớn
-- 📦 2016→2017 tăng ổn định **+25% YoY** (36,230 → 45,314 đơn) — giai đoạn tăng trưởng bền vững
-- 🌏 **Australia và Southwest** là 2 territory dẫn đầu (17,951 và 17,191 đơn) — cách xa Canada ở vị trí thứ 3 (10,894 đơn)
-- ⚖️ Phân bổ giới tính gần như cân bằng: **M 50.7% / F 49.3%** — chiến dịch marketing không cần phân hóa theo giới
-- 🔄 Return rate tăng từ **3.3% (2015)** lên **7.7% (2016)** theo tốc độ tăng trưởng — cần điều tra chất lượng sản phẩm ở các territory có return rate cao
-
+1. SSMS → import 8 CSV vào `LEARNSQL`
+2. Mở `Portfolio_Master_TSQL.sql`
+3. Chạy **FOUNDATION** trước (tạo view `ALLSALES`)
+4. Chạy từng BQ theo thứ tự
 ---
 
 ## 👤 Tác giả
 
-**[NGUYEN HUNG THANH]** — Data Analyst
+**NGUYEN HUNG THANH** —  Data Analyst 
 
 [LinkedIn](https://www.linkedin.com/in/thant2706/)
 
 📧 hungthsnhnguyen37@gmail.com
-
---
