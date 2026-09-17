@@ -126,6 +126,6 @@ Net Profit    = Total Revenue − Total Cost
 
 **NGUYEN HUNG THANH** —  Data Analyst 
 
-[LinkedIn](https://www.linkedin.com/in/thant2706/)
+🔵 in [LinkedIn](https://www.linkedin.com/in/thant2706/)
 
 📧 hungthsnhnguyen37@gmail.com
