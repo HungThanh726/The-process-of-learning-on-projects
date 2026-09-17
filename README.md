@@ -35,7 +35,7 @@ retail-aw-analytics/
 
 ## 📦 Module 1 — Retail Orders Analysis
 
-**Database:** `hocsql` | **Table:** `Orders` | 
+**Database:** `hocsql` | **Table:** `Orders` 
 
 | BQ | Câu hỏi | Kỹ thuật |
 |----|---------|----------|
@@ -53,7 +53,7 @@ Net Profit    = Total Revenue − Total Cost
 
 ## 📦 Module 2 — AdventureWorks Sales Analytics
 
-**Database:** `LEARNSQL` |
+**Database:** `LEARNSQL` 
 
 ### Dataset
 
