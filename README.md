@@ -89,7 +89,7 @@ Phân tích doanh thu đa năm, phân tích theo chiều sản phẩm × khách 
 
 ## 🔑 Ma trận kỹ thuật SQL
 
-| Kỹ thuật | Mod 1 | Mod 2 |
+| Kỹ thuật | Mod 1 | Mod 2 | |
 |----------|:-----:|:-----:|:-----:|
 | SELECT + WHERE (IN / NOT IN / LIKE / AND) | ✅ | | |
 | Derived columns (phép tính) | ✅ | ✅ | |
