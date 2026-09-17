@@ -89,20 +89,20 @@ Phân tích doanh thu đa năm, phân tích theo chiều sản phẩm × khách 
 
 ## 🔑 Ma trận kỹ thuật SQL
 
-| Kỹ thuật | Mod 1 | Mod 2 | |
-|----------|:-----:|:-----:|:-----:|
-| SELECT + WHERE (IN / NOT IN / LIKE / AND) | ✅ | | |
-| Derived columns (phép tính) | ✅ | ✅ | |
-| UNION ALL (gộp nhiều bảng) | | ✅ | |
-| Multi-table JOIN (3–5 bảng) | | ✅ | ✅ |
-| CREATE VIEW | | ✅ | ✅ |
-| FORMAT() / YEAR() phân nhóm thời gian | | ✅ | ✅ |
-| Excel serial date conversion | | | ✅ |
-| Nested Subquery | | ✅ | ✅ |
-| ROW_NUMBER() OVER (PARTITION BY) | | | ✅ |
-| CTE — WITH ... AS | | | ✅ |
-| Multi-CTE + FULL OUTER JOIN | | | ✅ |
-| Returns / NULLIF analysis | | ✅ | |
+| Kỹ thuật | Mod 1 | Mod 2 | 
+|----------|:-----:|:-----:|
+| SELECT + WHERE (IN / NOT IN / LIKE / AND) | ✅ | |
+| Derived columns (phép tính) | ✅ | ✅ |
+| UNION ALL (gộp nhiều bảng) | | ✅ |
+| Multi-table JOIN (3–5 bảng) | | ✅ | 
+| CREATE VIEW | | ✅ | 
+| FORMAT() / YEAR() phân nhóm thời gian | | ✅ |
+| Excel serial date conversion | | | 
+| Nested Subquery | | ✅ | 
+| ROW_NUMBER() OVER (PARTITION BY) | | | 
+| CTE — WITH ... AS | | | 
+| Multi-CTE + FULL OUTER JOIN | | | 
+| Returns / NULLIF analysis | | ✅ |
 
 ---
 
